@@ -8,30 +8,37 @@
     <style>
         body {
             background-image: url('./wallpaper.jpg');
-            background-size: 100% 100%;
+            background-size: cover;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            font-family: Arial, sans-serif;
         }
 
         h1 {
             color: #fff;
             position: fixed;
-            top: 20px;
-            font-size: 30px;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            z-index: 999;
+            text-align: center;
+            width: 100%;
+            padding: 10px;
         }
 
         .heart-container {
-            position: absolute; /* To position it absolutely on the screen */
-            top: 50%; /* Move the container to the vertical center */
-            left: 50%; /* Move the container to the horizontal center */
-            transform: translate(-50%, -50%); /* Adjust so that the center is exactly at the center of the page */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             display: flex;
             justify-content: center;
-            gap: 15px; /* Space between the buttons */
+            gap: 15px;
         }
 
         .heart-button {
@@ -43,6 +50,7 @@
             background-color: red;
             color: white;
             cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
         .heart-button:hover {
@@ -69,6 +77,10 @@
         }
 
         @media (max-width: 768px) {
+            h1 {
+                font-size: 20px;
+                padding: 8px;
+            }
             .heart-button {
                 width: 50px;
                 height: 50px;
