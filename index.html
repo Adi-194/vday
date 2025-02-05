@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <h1>Happy Valentine's Day, My Love! test</h1>
+    <h1>Happy Valentine's Day, My Love!</h1>
     <div class="container" id="buttonContainer"></div>
     <div class="story-box" id="storyBox">
         <p id="storyText"></p>
@@ -22,14 +22,23 @@
             "You are my forever and always. I love you!"
         ];
 
-        function createFloatingButtons() {
+        function createHeartShapeButtons() {
             const container = document.getElementById('buttonContainer');
-            for (let i = 0; i < stories.length; i++) {
+            const numButtons = stories.length;
+            const centerX = 50;
+            const centerY = 40;
+            const size = 20;
+            
+            for (let i = 0; i < numButtons; i++) {
+                let angle = (Math.PI * 2 * i) / numButtons;
+                let x = centerX + size * (16 * Math.pow(Math.sin(angle), 3));
+                let y = centerY - size * (13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle));
+                
                 let button = document.createElement('button');
                 button.innerText = '❤️';
                 button.classList.add('heart-button');
-                button.style.top = Math.random() * 80 + 'vh';
-                button.style.left = Math.random() * 80 + 'vw';
+                button.style.top = `${y}vh`;
+                button.style.left = `${x}vw`;
                 button.onclick = () => showStory(i);
                 container.appendChild(button);
             }
@@ -44,7 +53,7 @@
             document.getElementById('storyBox').style.display = 'none';
         }
 
-        createFloatingButtons();
+        createHeartShapeButtons();
     </script>
 </body>
 </html>
