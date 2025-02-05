@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day</title>
+    <style>
+        body {
+            background-color: #ffccd5;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        h1 {
+            color: #ff4d6d;
+            font-size: 2em;
+            margin-top: 20px;
+        }
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        .heart-button {
+            position: absolute;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .heart-button:hover {
+            transform: scale(1.2);
+        }
+        .story-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .close-btn {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day, My Love!</h1>
+    <div class="container" id="buttonContainer"></div>
+    <div class="story-box" id="storyBox">
+        <p id="storyText"></p>
+        <button class="close-btn" onclick="closeStory()">Close</button>
+    </div>
+    <script>
+        const stories = [
+            "The day we first met, my heart knew it found something special.",
+            "Remember our first date? The way we laughed made time stop.",
+            "Every moment with you is a beautiful chapter in our love story.",
+            "I cherish every hug, every smile, and every shared dream with you.",
+            "You are my forever and always. I love you!"
+        ];
+
+        function createFloatingButtons() {
+            const container = document.getElementById('buttonContainer');
+            for (let i = 0; i < stories.length; i++) {
+                let button = document.createElement('button');
+                button.innerText = '❤️';
+                button.classList.add('heart-button');
+                button.style.top = Math.random() * 80 + 'vh';
+                button.style.left = Math.random() * 80 + 'vw';
+                button.onclick = () => showStory(i);
+                container.appendChild(button);
+            }
+        }
+
+        function showStory(index) {
+            document.getElementById('storyText').innerText = stories[index];
+            document.getElementById('storyBox').style.display = 'block';
+        }
+
+        function closeStory() {
+            document.getElementById('storyBox').style.display = 'none';
+        }
+
+        createFloatingButtons();
+    </script>
+</body>
+</html>
