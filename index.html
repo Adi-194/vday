@@ -4,58 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Valentine's Day</title>
-    <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
-    <h1>Happy Valentine's Day, My Love!</h1>
-    <div class="container" id="buttonContainer"></div>
-    <div class="story-box" id="storyBox">
-        <p id="storyText"></p>
-        <button class="close-btn" onclick="closeStory()">Close</button>
-    </div>
-    <script>
-        const stories = [
-            "The day we first met, my heart knew it found something special.",
-            "Remember our first date? The way we laughed made time stop.",
-            "Every moment with you is a beautiful chapter in our love story.",
-            "I cherish every hug, every smile, and every shared dream with you.",
-            "You are my forever and always. I love you!"
-        ];
-
-        function createHeartShapeButtons() {
-            const container = document.getElementById('buttonContainer');
-            const numButtons = 20; // More points for a smoother heart shape
-            const centerX = 50;
-            const centerY = 42;
-            const size = 10;
-            
-            for (let i = 0; i < numButtons; i++) {
-                let angle = (Math.PI * 2 * i) / numButtons;
-                let x = centerX + size * (16 * Math.pow(Math.sin(angle), 3));
-                let y = centerY - size * (13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle));
-                
-                let button = document.createElement('button');
-                button.innerText = '❤️';
-                button.classList.add('heart-button');
-                button.style.position = 'absolute';
-                button.style.transform = 'translate(-50%, -50%)';
-                button.style.top = `${y}vh`;
-                button.style.left = `${x}vw`;
-                button.onclick = () => showStory(i % stories.length);
-                container.appendChild(button);
-            }
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('./wallpaper.jpg');
+            background-size: 100% 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
         }
 
+        h1 {
+            color: #fff;
+            position: fixed;
+            top: 20px;
+            font-size: 30px;
+        }
+
+        .heart-container {
+            position: absolute; /* To position it absolutely on the screen */
+            top: 50%; /* Move the container to the vertical center */
+            left: 50%; /* Move the container to the horizontal center */
+            transform: translate(-50%, -50%); /* Adjust so that the center is exactly at the center of the page */
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Space between the buttons */
+        }
+
+        .heart-button {
+            width: 60px;
+            height: 60px;
+            font-size: 30px;
+            border-radius: 50%;
+            border: none;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+        }
+
+        .heart-button:hover {
+            transform: scale(1.1);
+            background-color: darkred;
+        }
+
+        .story-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+
+        .story-box p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .heart-button {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Happy Valentine's Day, My Love!</h1>
+
+    <div class="heart-container">
+        <button class="heart-button" onclick="showStory(1)">❤️</button>
+        <button class="heart-button" onclick="showStory(2)">❤️</button>
+        <button class="heart-button" onclick="showStory(3)">❤️</button>
+        <button class="heart-button" onclick="showStory(4)">❤️</button>
+        <button class="heart-button" onclick="showStory(5)">❤️</button>
+    </div>
+
+    <div class="story-box" id="storyBox">
+        <p id="storyText"></p>
+        <button class="btn btn-secondary mt-2" onclick="closeStory()">Close</button>
+    </div>
+
+    <script>
+        const stories = [
+            "Our first date was magical, we had so much fun just talking and laughing. I knew from that moment that I wanted to spend more time with you.",
+            "I remember our walk in the park, the way we held hands and talked about everything under the sun. It was perfect in its simplicity.",
+            "That surprise dinner you planned for me was beyond amazing. You always know how to make me feel special, and I’m so grateful for you.",
+            "On our weekend getaway, we got lost in the beauty of nature, but what made it unforgettable was having you by my side. Those moments were pure bliss.",
+            "Every time we go on a spontaneous adventure, I realize how lucky I am to have you in my life. Your presence makes everything more beautiful."
+        ];
+
         function showStory(index) {
-            document.getElementById('storyText').innerText = stories[index];
-            document.getElementById('storyBox').style.display = 'block';
+            const storyBox = document.getElementById('storyBox');
+            const storyText = document.getElementById('storyText');
+            storyText.textContent = stories[index - 1];
+            storyBox.style.display = 'block';
         }
 
         function closeStory() {
-            document.getElementById('storyBox').style.display = 'none';
+            const storyBox = document.getElementById('storyBox');
+            storyBox.style.display = 'none';
         }
-
-        createHeartShapeButtons();
     </script>
+
 </body>
 </html>
