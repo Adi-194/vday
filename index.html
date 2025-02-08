@@ -72,12 +72,8 @@
 
         /* Bounce Animation */
         @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
         .heart-button:hover {
@@ -92,8 +88,8 @@
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 30px;
-            background-color: #7b1fa2; /* Deep purple background */
-            color: white; /* White text */
+            background-color: #7b1fa2;
+            color: white;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             z-index: 999;
@@ -109,7 +105,7 @@
 
         .story-box button {
             background-color: white;
-            color: #7b1fa2; /* Matching purple text */
+            color: #7b1fa2;
             border: none;
             padding: 8px 16px;
             font-size: 16px;
@@ -119,35 +115,39 @@
         }
 
         .story-box button:hover {
-            background-color: #e1bee7; /* Light purple hover effect */
+            background-color: #e1bee7;
         }
 
         /* Fade-in Animation */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -55%);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%);
-            }
+            from { opacity: 0; transform: translate(-50%, -55%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        /* Final Button */
+        .final-button {
+            display: none;
+            margin-top: 20px;
+            padding: 12px 20px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: gold;
+            color: black;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .final-button:hover {
+            background-color: darkgoldenrod;
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 20px;
-                padding: 8px;
-            }
-            .date-image {
-                width: 80px;
-                height: 80px;
-            }
-            .heart-button {
-                width: 50px;
-                height: 50px;
-                font-size: 25px;
-            }
+            h1 { font-size: 20px; padding: 8px; }
+            .date-image { width: 80px; height: 80px; }
+            .heart-button { width: 50px; height: 50px; font-size: 25px; }
         }
     </style>
 </head>
@@ -176,6 +176,9 @@
             <img src="./assets/date5.jpg" class="date-image" alt="Date 5">
             <button class="heart-button" onclick="showStory(5)">❤️</button>
         </div>
+
+        <!-- Final button appears here after all stories are clicked -->
+        <button class="final-button" id="finalButton" onclick="askValentine()">💛 Click for a Surprise 💛</button>
     </div>
 
     <div class="story-box" id="storyBox">
@@ -192,16 +195,33 @@
             "Every time we go on a spontaneous adventure, I realize how lucky I am to have you in my life. Your presence makes everything more beautiful."
         ];
 
+        let clickedButtons = new Set();
+
         function showStory(index) {
             const storyBox = document.getElementById('storyBox');
             const storyText = document.getElementById('storyText');
             storyText.textContent = stories[index - 1];
             storyBox.style.display = 'block';
+
+            clickedButtons.add(index);
+            if (clickedButtons.size === 5) {
+                document.getElementById('finalButton').style.display = 'block';
+            }
         }
 
         function closeStory() {
-            const storyBox = document.getElementById('storyBox');
-            storyBox.style.display = 'none';
+            document.getElementById('storyBox').style.display = 'none';
+        }
+
+        function askValentine() {
+            document.getElementById('storyText').textContent = "Will you be my Valentine? 💕";
+            document.getElementById('storyBox').style.display = 'block';
+            document.getElementById('storyBox').innerHTML += '<button onclick="yesValentine()">Yes! 💖</button>';
+        }
+
+        function yesValentine() {
+            alert("Yay! I love you! 💖🥰");
+            closeStory();
         }
     </script>
 
