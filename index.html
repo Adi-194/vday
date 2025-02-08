@@ -9,6 +9,7 @@
         body {
             background-image: url('./wallpaper.jpg');
             background-size: cover;
+            background-position: center;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -31,14 +32,30 @@
             padding: 10px;
         }
 
-        .heart-container {
+        .content-container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .date-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 15px;
+            width: 280px;
+        }
+
+        .date-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
         }
 
         .heart-button {
@@ -53,26 +70,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: bounce 1s ease infinite; /* Bounce animation on button */
+            animation: bounce 1s ease infinite;
         }
 
         /* Bounce Animation */
         @keyframes bounce {
-            0% {
-                transform: translateY(0);
-            }
-            25% {
-                transform: translateY(-10px);
-            }
-            50% {
-                transform: translateY(0);
-            }
-            75% {
-                transform: translateY(-5px);
-            }
-            100% {
-                transform: translateY(0);
-            }
+            0% { transform: translateY(0); }
+            25% { transform: translateY(-10px); }
+            50% { transform: translateY(0); }
+            75% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
         }
 
         .heart-button:hover {
@@ -108,6 +115,13 @@
                 height: 50px;
                 font-size: 25px;
             }
+            .date-image {
+                width: 80px;
+                height: 80px;
+            }
+            .date-item {
+                width: 240px;
+            }
         }
     </style>
 </head>
@@ -115,12 +129,27 @@
 
     <h1>Happy Valentine's Day, My Love!</h1>
 
-    <div class="heart-container">
-        <button class="heart-button" onclick="showStory(1)">❤️</button>
-        <button class="heart-button" onclick="showStory(2)">❤️</button>
-        <button class="heart-button" onclick="showStory(3)">❤️</button>
-        <button class="heart-button" onclick="showStory(4)">❤️</button>
-        <button class="heart-button" onclick="showStory(5)">❤️</button>
+    <div class="content-container">
+        <div class="date-item">
+            <img src="./assets/date1.jpg" alt="Date 1" class="date-image">
+            <button class="heart-button" onclick="showStory(1)">❤️</button>
+        </div>
+        <div class="date-item">
+            <img src="./assets/date2.png" alt="Date 2" class="date-image">
+            <button class="heart-button" onclick="showStory(2)">❤️</button>
+        </div>
+        <div class="date-item">
+            <img src="./assets/date3.jpg" alt="Date 3" class="date-image">
+            <button class="heart-button" onclick="showStory(3)">❤️</button>
+        </div>
+        <div class="date-item">
+            <img src="./assets/date4.jpg" alt="Date 4" class="date-image">
+            <button class="heart-button" onclick="showStory(4)">❤️</button>
+        </div>
+        <div class="date-item">
+            <img src="./assets/date5.jpg" alt="Date 5" class="date-image">
+            <button class="heart-button" onclick="showStory(5)">❤️</button>
+        </div>
     </div>
 
     <div class="story-box" id="storyBox">
@@ -145,8 +174,7 @@
         }
 
         function closeStory() {
-            const storyBox = document.getElementById('storyBox');
-            storyBox.style.display = 'none';
+            document.getElementById('storyBox').style.display = 'none';
         }
     </script>
 
